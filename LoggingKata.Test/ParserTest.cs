@@ -11,9 +11,43 @@ namespace LoggingKata.Test
     public class TacoParserTestFixture
     {
         [Test]
-        public void ShouldParseLine()
+        public void ShouldReturnNullForEmptyString()
         {
-            //TODO: Complete ShouldParseLine
+            // Arrange
+            const string line = "";
+            var parser = new TacoParser();
+
+            // Act
+            var result = parser.Parse(line);
+
+            // Assert
+            Assert.IsNull(result);
+        }
+        [Test]
+        public void ShouldReturnNullForNullString()
+        {
+            // Arrange
+            const string line = null;
+            var parser = new TacoParser();
+
+            // Act
+            var result = parser.Parse(line);
+
+            // Assert
+            Assert.IsNull(result);
+        }
+        [Test]
+        public void ShouldParseString()
+        {
+            // Arrange
+            const string line = "-86.889051, Testing";
+            var parser = new TacoParser();
+
+            // Act
+            var result = parser.Parse(line);
+
+            // Assert
+            Assert.IsNull(result);
         }
     }
 }
