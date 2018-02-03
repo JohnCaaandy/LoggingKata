@@ -31,15 +31,21 @@ namespace LoggingKata
 
             var lonString = cells[0];
             var latString = cells[1];
-            var name = cells.Length > 2 ? cells[2] : null;
-
-            decimal lon;
-            decimal lat;
 
             try
             {
-                lon = decimal.Parse(lonString);
-                lat = decimal.Parse(latString);
+                var lon = decimal.Parse(lonString);
+                var lat = decimal.Parse(latString);
+
+                return new TacoBell
+                {
+                    Name = cells.Length > 2 ? cells[2] : null,
+                    Location = new Point
+                    {
+                        Latitude = lat,
+                        Longitude = lon
+                    }
+                };
             }
             catch (Exception e)
             {
@@ -47,15 +53,7 @@ namespace LoggingKata
                 return null;
             }
 
-            return new TacoBell
-            {
-                Name = name,
-                Location = new Point
-                {
-                    Latitude = lat,
-                    Longitude = lon
-                }
-            };
+
         }
     }
 }
