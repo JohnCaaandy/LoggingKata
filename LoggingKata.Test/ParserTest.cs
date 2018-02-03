@@ -36,8 +36,9 @@ namespace LoggingKata.Test
             // Assert
             Assert.IsNull(result);
         }
+
         [Test]
-        public void ShouldParseString()
+        public void ShouldReturnNullForNoLatAndLon()
         {
             // Arrange
             const string line = "-86.889051, Testing";
@@ -49,5 +50,33 @@ namespace LoggingKata.Test
             // Assert
             Assert.IsNull(result);
         }
+        [Test]
+        public void ShouldParseString()
+        {
+            // Arrange
+            const string line = "-84.296345, 34.071477,\"Taco Bell Alpharett... (Free trial * Add to Cart for a full POI info) /";
+            var parser = new TacoParser();
+
+            // Act
+            var result = parser.Parse(line);
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+
+        [Test]
+        public void ShouldParseJustLatAndLong()
+        {
+            // Arrange
+            const string line = "-84.296345, 34.071477";
+            var parser = new TacoParser();
+
+            // Act
+            var result = parser.Parse(line);
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+
     }
 }

@@ -19,8 +19,18 @@ namespace LoggingKata
 
         public ITrackable Parse(string line)
         {
-            //DO not fail if one record parsing fails, return null
-            return null; //TODO Implement
+            if (string.IsNullOrEmpty(line))
+            {
+                return null;
+            }
+
+            var cells = line.Split(',');
+
+            if (cells.Length < 2) {return null;}
+
+            var lonString = cells[0];
+            var latString = cells[1];
+            var name = cells.Length > 2 ? cells[2] : null;
         }
     }
 }
