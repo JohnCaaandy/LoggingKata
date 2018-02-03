@@ -16,20 +16,24 @@ namespace LoggingKata
 
         static void Main(string[] args)
         {
-            if (args.Length == 0)
-            {
-                Console.WriteLine("You must provide a filename as an argument");
-                Logger.Fatal("Cannot import without filename specified as an argument");
-                return;
-            }
-
             Logger.Info("Log initialized");
-            var lines = File.ReadAllLines(args[0]);
+
+            var file = Path.Combine(Environment.CurrentDirectory, "Taco_Bell-US-AL-Alabama.csv");
+
+            Console.WriteLine("file: " + file);
+
+            var lines = File.ReadAllLines(file);
             var parser = new TacoParser();
+
             var locations = lines.Select(line => parser.Parse(line));
 
+            foreach (var location in locations)
+            {
+                Console.WriteLine("location: " + location.Name);
+            }
             //TODO:  Find the two TacoBells in Alabama that are the furthurest from one another.
             //HINT:  You'll need two nested forloops
+            Console.ReadLine();
 
         }
     }
