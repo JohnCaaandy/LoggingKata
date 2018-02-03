@@ -27,7 +27,7 @@ namespace LoggingKata
 
             var cells = line.Split(',');
 
-            if (cells.Length < 2) {return null;}
+            if (cells.Length < 2) { return null; }
 
             var lonString = cells[0];
             var latString = cells[1];
@@ -47,7 +47,15 @@ namespace LoggingKata
                 return null;
             }
 
-            return null;
+            return new TacoBell
+            {
+                Name = name,
+                Location = new Point
+                {
+                    Latitude = lat,
+                    Longitude = lon
+                }
+            };
         }
     }
 }
