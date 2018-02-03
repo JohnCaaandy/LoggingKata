@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using log4net;
 
@@ -31,6 +32,22 @@ namespace LoggingKata
             var lonString = cells[0];
             var latString = cells[1];
             var name = cells.Length > 2 ? cells[2] : null;
+
+            decimal lon;
+            decimal lat;
+
+            try
+            {
+                lon = decimal.Parse(lonString);
+                lat = decimal.Parse(latString);
+            }
+            catch (Exception e)
+            {
+                Logger.Error("Failed to Parse lat and lon", e);
+                return null;
+            }
+
+            return null;
         }
     }
 }
