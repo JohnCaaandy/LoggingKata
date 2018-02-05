@@ -24,11 +24,20 @@ namespace LoggingKata
             Console.WriteLine("file: " + file);
 
             var lines = File.ReadAllLines(file);
+
+            if (lines.Length == 0)
+            {
+                Logger.Fatal("No lines to parse");
+                return;
+            }
+
             var parser = new TacoParser();
 
-            var locations = lines.Select(line => parser.Parse(line));
+            var locations = lines.Select(line => parser.Parse(line)).ToList();
+
             ITrackable locationA = null;
             ITrackable locationB = null;
+
             double distance = 0;
 
             foreach (var locA in locations)
@@ -39,20 +48,20 @@ namespace LoggingKata
                 {
                     var destination = new Coordinate { Latitude = locB.Location.Latitude, Longitude = locB.Location.Longitude };
                     var calc = GeoCalculator.GetDistance(origin, destination);
-                    if (calc > distance)
-                    {
-                        locationA = locA;
-                        locationB = locB;
-                        distance = calc;
-                    }
 
+                    if (calc <= distance) { continue; }
+
+                    locationA = locA;
+                    locationB = locB;
+                    distance = calc;
                 }
             }
 
-            //TODO:  Find the two TacoBells in Alabama that are the furthurest from one another.
-            //HINT:  You'll need two nested forloops
-            Console.ReadLine();
+            Logger.Debug("Here is all of the necessary information about this function");
 
+            Console.WriteLine($"These are furthest: {locationA?.Name} {locationB?.Name}");
+
+            Console.ReadLine();
         }
     }
 }

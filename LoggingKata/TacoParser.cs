@@ -17,6 +17,7 @@ namespace LoggingKata
         {
             if (string.IsNullOrEmpty(line))
             {
+                Logger.Warn("Can't parse an empty or null string");
                 return null;
             }
 
