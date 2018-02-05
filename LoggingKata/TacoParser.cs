@@ -47,8 +47,6 @@ namespace LoggingKata
                 Logger.Error("Failed to Parse lat and lon", e);
                 return null;
             }
-
-
         }
     }
 }
