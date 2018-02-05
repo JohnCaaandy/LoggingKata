@@ -29,8 +29,8 @@ namespace LoggingKata
 
             try
             {
-                var lon = decimal.Parse(lonString);
-                var lat = decimal.Parse(latString);
+                var lon = double.Parse(lonString);
+                var lat = double.Parse(latString);
 
                 return new TacoBell
                 {

@@ -41,6 +41,8 @@ namespace LoggingKata
                     var calc = GeoCalculator.GetDistance(origin, destination);
                     if (calc > distance)
                     {
+                        locationA = locA;
+                        locationB = locB;
                         distance = calc;
                     }
 
